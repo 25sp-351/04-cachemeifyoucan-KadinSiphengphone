@@ -1,5 +1,5 @@
 #include "cutlist.h"
-#include "cache.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -10,8 +10,6 @@ CutList new_cutlist(Cut *cuts, int rod_length, int total_value) {
   list.total_value = total_value;
   return list;
 }
-
-int cut_fits(int cut_length, int rod_length) { return cut_length > rod_length; }
 
 CutList find_optimal_cuts(Cut *cuts, int rod_length) {
 
@@ -25,16 +23,10 @@ CutList find_optimal_cuts(Cut *cuts, int rod_length) {
   CutList best_cutlist = new_cutlist(NULL, rod_length, 0);
 
   for (int xx = 0; xx < size_of_cuts(cuts); xx++) {
-    // if (cuts[xx].length > rod_length) {
-    //   continue;
-    // }
-    // if (cut_fits(cuts[xx].length, rod_length)) {
-    //   continue;
-    // }
-
-    if (cut_fits_provider(cuts[xx].length, rod_length)) {
+    if (cuts[xx].length > rod_length) {
       continue;
     }
+
     int remainder = rod_length - cuts[xx].length;
     CutList possible_cutlist = find_optimal_cuts(cuts, remainder);
 
@@ -71,6 +63,10 @@ CutList find_optimal_cuts(Cut *cuts, int rod_length) {
   best_cutlist.remainder = rod_length - used_length;
 
   return best_cutlist;
+}
+
+CutList choose_best_cuts(Cut *cuts, int rod_length) {
+  return find_optimal_cuts(cuts, rod_length);
 }
 
 void print_list(CutList cutlist) {

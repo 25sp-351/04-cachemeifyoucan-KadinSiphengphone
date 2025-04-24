@@ -11,14 +11,18 @@
 // %u for unsigned int, etc.)
 
 // typedef int KeyType;
-#define KEY_FMT "%d,%d"
 typedef struct {
-  int cut_length;
+  Cut *input_cuts;
   int rod_length;
 } KeyType;
+#define KEY_FMT "%p %d"
 
-typedef int ValueType;
-#define VALUE_FMT "%d"
+// typedef int ValueType;
+typedef CutList ValueType;
+
+ValueType choose_best_cuts_to_key(KeyType key);
+
+#define VALUE_FMT "%p"
 
 // This is the type of the function you want to cache
 // (if this is not what you want to cache, you're going to

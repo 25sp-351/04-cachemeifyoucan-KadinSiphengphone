@@ -1,4 +1,5 @@
 #include "cut.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -95,4 +96,23 @@ Cut *add_cut(Cut *cuts, int length) {
   }
 
   return cuts;
+}
+
+bool cuts_equal(Cut *first, Cut *second) {
+  if (first == NULL || second == NULL) {
+    return false;
+  }
+
+  int first_size = size_of_cuts(first);
+  int second_size = size_of_cuts(second);
+  if (first_size != second_size) {
+    return false;
+  }
+
+  for (int xx = 0; xx < first_size; xx++) {
+    if (first[xx].length != second[xx].length ||
+        first[xx].value != second[xx].value)
+      return false;
+  }
+  return true;
 }
