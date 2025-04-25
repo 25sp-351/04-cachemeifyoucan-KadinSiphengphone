@@ -97,6 +97,8 @@ ValueType _caching_provider(KeyType key) {
     keys[least_recent_index] = new_key(key.input_cuts, key.rod_length);
     values[least_recent_index] = result;
     time_info[least_recent_index] = current_time++;
+
+    printf("Evicting index %d\n", least_recent_index);
   }
 
   return result;

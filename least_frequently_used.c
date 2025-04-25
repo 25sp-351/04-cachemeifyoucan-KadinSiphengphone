@@ -97,6 +97,8 @@ ValueType _caching_provider(KeyType key) {
     keys[least_frequent_index] = new_key(key.input_cuts, key.rod_length);
     values[least_frequent_index] = result;
     usage_counts[least_frequent_index] = 1;
+
+    printf("Evicting index %d\n", least_frequent_index);
   }
 
   return result;
