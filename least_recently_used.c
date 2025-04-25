@@ -49,7 +49,6 @@ void reset_statistics(void) {
   cache_hits = 0;
   cache_misses = 0;
   cache_evictions = 0;
-  current_time = 0;
 }
 
 bool equals(KeyType first, KeyType second) {

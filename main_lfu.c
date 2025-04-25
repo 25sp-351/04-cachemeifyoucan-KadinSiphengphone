@@ -14,8 +14,6 @@ int main(int argc, char *argv[]) {
   if (argc != 2 || !strcmp(argv[1], "-h"))
     return 1;
 
-  int cache_initialized = 0;
-
   ProviderFunction choose_best_cuts_provider = NULL;
 
   Cache *cache = NULL;
@@ -23,7 +21,7 @@ int main(int argc, char *argv[]) {
   // choose_best_cuts_provider = choose_best_cuts;
   choose_best_cuts_provider = choose_best_cuts_to_key;
 
-  cache = load_cache_module("./LRU.so");
+  cache = load_cache_module("./least_frequently_used.so");
 
   choose_best_cuts_provider =
       cache->set_provider_func(choose_best_cuts_provider);
